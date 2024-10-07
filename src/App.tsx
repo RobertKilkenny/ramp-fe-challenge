@@ -31,7 +31,7 @@ export function App() {
     await paginatedTransactionsUtils.fetchAll();
 
     setIsLoading(false);
-  }, [employeeUtils, paginatedTransactionsUtils, transactionsByEmployeeUtils]);
+  }, [employees, employeeUtils, paginatedTransactionsUtils, transactionsByEmployeeUtils]);
 
   const loadTransactionsByEmployee = useCallback(
     async (employeeId: string) => {
@@ -76,15 +76,13 @@ export function App() {
           onChange={async (newValue) => {
             if (newValue === null) {
               return;
-            }
-
+            } 
             if (newValue.id === "DEFAULT") {
               loadAllTransactions();
-              return;
             }
-            // console.log("new value is:", newValue);
-
-            await loadTransactionsByEmployee(newValue.id);
+            else {
+              await loadTransactionsByEmployee(newValue.id);
+            }
           }}
         />
 
